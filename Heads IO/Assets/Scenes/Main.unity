@@ -193,7 +193,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 261266443}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0eaedcfe7e6d43a4094af86d21c89681, type: 3}
   m_Name: 
@@ -408,7 +408,7 @@ MeshCollider:
   m_GameObject: {fileID: 685028147}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -2102,7 +2102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCollectorTrigger: {fileID: 978603610}
   _growthController: {fileID: 2006712642}
-  _defaultPoints: 10
+  _defaultPoints: 100000
 --- !u!114 &2006712648
 MonoBehaviour:
   m_ObjectHideFlags: 0
