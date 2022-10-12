@@ -6,7 +6,6 @@ namespace _Scripts.Factory
 {
     public class BotSpawner : MonoBehaviour
     {
-       // [SerializeField] private GameObject[] _botPrefabs;
         [SerializeField] private BotMoveHandler[] _botPrefabs;
         [SerializeField] private Player.Player _player;
         [SerializeField] private int _rangeToSpawnBot;
@@ -24,7 +23,7 @@ namespace _Scripts.Factory
         {
             for (int i = 0; i < _amountBots; i++)
             {
-                BotMoveHandler newBot = _diContainer.InstantiatePrefabForComponent<BotMoveHandler>(_botPrefabs[Random.Range(0, _botPrefabs.Length)], transform);
+                BotMoveHandler newBot = _diContainer.InstantiatePrefabForComponent<BotMoveHandler>(_botPrefabs[Random.Range(0, _botPrefabs.Length)]);
                 newBot.Init(_player);
                 newBot.transform.position = new Vector3(Random.Range(-_rangeToSpawnBot, _rangeToSpawnBot), 0.5f,
                     Random.Range(-_rangeToSpawnBot, _rangeToSpawnBot));

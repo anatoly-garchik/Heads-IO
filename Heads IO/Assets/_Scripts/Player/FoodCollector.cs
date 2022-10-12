@@ -32,7 +32,8 @@ namespace _Scripts.Player
 
             if (other.TryGetComponent(out Bot.Bot bot) && _isCanCheckBot)
             {
-                BotTriggered?.Invoke(bot);
+                if (other.gameObject != gameObject)
+                    BotTriggered?.Invoke(bot);
             }
         }
     }

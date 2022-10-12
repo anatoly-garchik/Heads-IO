@@ -1,5 +1,4 @@
 using System;
-using _Scripts.Camera;
 using UnityEngine;
 
 namespace _Scripts.Player
@@ -9,7 +8,7 @@ namespace _Scripts.Player
         [SerializeField] private FoodCollector _foodCollector;
         [SerializeField] private GrowthController _growthController;
 
-        public float AmountPoints { get; private set; } = 3;
+        public float AmountPoints { get; private set; } = 10;
 
         public event Action Died;
         

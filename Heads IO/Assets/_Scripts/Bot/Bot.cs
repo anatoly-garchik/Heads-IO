@@ -15,6 +15,7 @@ namespace _Scripts.Bot
         {
             _foodCollector.EatTaken += AddPoints;
             _foodCollector.PlayerTriggered += TryTakePlayerPoints;
+            _foodCollector.BotTriggered += TryTakeBotPoints;
         }
 
         private void AddPoints(float points)
@@ -32,11 +33,22 @@ namespace _Scripts.Bot
                 player.KillPlayer();
             }
         }
+        private void TryTakeBotPoints(Bot bot)
+        {
+            if (bot.AmountPoints < AmountPoints)
+            {
+                AddPoints(bot.AmountPoints);
+                _growthController.IncreaseCharacter(bot.AmountPoints);
+                Destroy(bot.gameObject);
+            }
+        }
+        
 
         private void OnDestroy()
         {
             _foodCollector.EatTaken -= AddPoints;
             _foodCollector.PlayerTriggered -= TryTakePlayerPoints;
+            _foodCollector.BotTriggered -= TryTakeBotPoints;
         }
     }
 }

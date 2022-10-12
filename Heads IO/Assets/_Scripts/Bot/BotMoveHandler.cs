@@ -1,14 +1,12 @@
 using System.Collections;
 using _Scripts.Factory;
 using UnityEngine;
-using UnityEngine.AI;
 using Zenject;
 
 namespace _Scripts.Bot
 {
     public class BotMoveHandler : MonoBehaviour
     {
-        [SerializeField] private NavMeshAgent _navMeshAgent;
         [SerializeField] private Bot _bot;
         [SerializeField] private int _rangePosition;
         [SerializeField] private int _timeToChangeDirection;
@@ -28,37 +26,31 @@ namespace _Scripts.Bot
         
         private void Update()
         {
-            if (_bot.AmountPoints > _player.AmountPoints)
+            if (_player != null && _bot.AmountPoints > _player.AmountPoints)
             {
-                //_navMeshAgent.SetDestination(_player.transform.position);
                 _target = _player.transform;
             }
             else
             {
-                if (_target == null)
+                if (_target == null || _player != null && _target == _player.transform)
                     _target = GetRandomTarget();
             }
+            
+            if (_target == null)
+                return;
             
             transform.LookAt(_target);
             transform.position = Vector3.MoveTowards(transform.position, 
                 new Vector3(_target.position.x, transform.position.y, _target.position.z), 
                 3 * Time.deltaTime);
-            
-            /*if (_isCanChangeDirection || _navMeshAgent.remainingDistance < 0.5f)
-            {
-                _navMeshAgent.SetDestination(GetTargetPosition());
-                _isCanChangeDirection = false;
-                
-                if (_timer != null)
-                    StopCoroutine(_timer);
-                
-                _timer = StartCoroutine(DirectionTimer());
-            }*/
         }
 
         private Transform GetRandomTarget()
         {
-            return _foodSpawner.GetTargetFood().transform;
+            if (_foodSpawner.GetTargetFood() != null)
+                return _foodSpawner.GetTargetFood().transform;
+
+            return null;
         }
         
         

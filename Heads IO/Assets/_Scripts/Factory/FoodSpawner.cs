@@ -23,7 +23,7 @@ namespace _Scripts.Factory
         {
             for (int i = 0; i < _amountFood; i++)
             {
-                GameObject newFood = Instantiate(_foodPrefabs[Random.Range(0, _foodPrefabs.Length)], transform);
+                GameObject newFood = Instantiate(_foodPrefabs[Random.Range(0, _foodPrefabs.Length)]);
                 newFood.transform.position = new Vector3(Random.Range(-_rangeToSpawnFood, _rangeToSpawnFood), 0.25f,
                     Random.Range(-_rangeToSpawnFood, _rangeToSpawnFood));
 
@@ -34,7 +34,10 @@ namespace _Scripts.Factory
 
         public GameObject GetTargetFood()
         {
-            return _foods[Random.Range(0, _foods.Count)];
+            if (_foods.Count > 0)
+                return _foods[Random.Range(0, _foods.Count)];
+            
+            return null;
         }
 
         public void RemoveFood(GameObject food)
