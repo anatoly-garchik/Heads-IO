@@ -1,39 +1,40 @@
 using System;
+using _Scripts.Player;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace _Scripts.Player
+namespace _Scripts.Bot
 {
-    public class Player : MonoBehaviour
+    public class Enemy : MonoBehaviour
     {
         [FormerlySerializedAs("collectorTrigger")] [FormerlySerializedAs("_foodCollector")] [SerializeField] private PlayerCollectorTrigger playerCollectorTrigger;
         [SerializeField] private GrowthController _growthController;
 
-        public float AmountPoints { get; private set; } = 10;
+        public float AmountPoints { get; private set; } = 1;
 
-        public event Action Died;
-        
-        /*private void Awake()
+        private void Awake()
         {
-            playerCollectorTrigger.FoodTriggered += AddPoints;
-            playerCollectorTrigger.EnemyTriggered += TryTakeEnemyPoints;
-        }*/
-
-        public void KillPlayer()
-        {
-            Died?.Invoke();
-            Destroy(gameObject);
+            /*playerCollectorTrigger.FoodTriggered += AddPoints;
+            playerCollectorTrigger.PlayerTriggered += TryTakePlayerPoints;
+            playerCollectorTrigger.EnemyTriggered += TryTakeEnemyPoints;*/
         }
 
         private void AddPoints(float points)
         {
             if (points > 0)
-            {
                 AmountPoints += points;
-            }
         }
 
-        private void TryTakeEnemyPoints(Bot.Enemy enemy)
+        private void TryTakePlayerPoints(Player.Player player)
+        {
+            if (player.AmountPoints < AmountPoints)
+            {
+                AmountPoints += player.AmountPoints;
+                _growthController.IncreaseCharacter(player.AmountPoints);
+                player.KillPlayer();
+            }
+        }
+        private void TryTakeEnemyPoints(Enemy enemy)
         {
             if (enemy.AmountPoints < AmountPoints)
             {
@@ -42,10 +43,12 @@ namespace _Scripts.Player
                 Destroy(enemy.gameObject);
             }
         }
+        
 
         /*private void OnDestroy()
         {
             playerCollectorTrigger.FoodTriggered -= AddPoints;
+            playerCollectorTrigger.PlayerTriggered -= TryTakePlayerPoints;
             playerCollectorTrigger.EnemyTriggered -= TryTakeEnemyPoints;
         }*/
     }

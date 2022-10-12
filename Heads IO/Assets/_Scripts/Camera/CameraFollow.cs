@@ -1,9 +1,14 @@
+using _Scripts.Player;
 using UnityEngine;
 
 namespace _Scripts.Camera
 {
     public class CameraFollow : MonoBehaviour
     {
+        [Header("Distance settings ")]
+        [SerializeField] private GrowthController _playerGrowthController;
+        [SerializeField] private float _remoteFactor;
+        [Header("Follow settings")]
         [SerializeField] private Transform _target;
         [SerializeField] private Vector3 _offset;
         [SerializeField] private float _speed;
@@ -11,6 +16,8 @@ namespace _Scripts.Camera
         private void Awake()
         {
             Application.targetFrameRate = 60;
+
+            _playerGrowthController.ScaleIncreased += ChangeOffset;
         }
 
         private void FixedUpdate()
@@ -22,13 +29,19 @@ namespace _Scripts.Camera
             transform.position = Vector3.Lerp(transform.position, targetPosition, _speed * Time.deltaTime);
         }
 
-        public void ChangeOffset(float points)
+        private void ChangeOffset(float points)
         {
-            float bla = points / 25;
-            float ofssetY = bla;
-            float ofssetz = bla * 2;
-            Vector3 newOffset = new Vector3(0, _offset.y + ofssetY, _offset.z - ofssetz);
+            float offset = points / _remoteFactor;
+            float newYOffset = offset;
+            float newZOffset = offset * 2;
+            
+            Vector3 newOffset = new Vector3(0, _offset.y + newYOffset, _offset.z - newZOffset);
             _offset = newOffset;
+        }
+
+        private void OnDestroy()
+        {
+            _playerGrowthController.ScaleIncreased -= ChangeOffset;
         }
     }
 }

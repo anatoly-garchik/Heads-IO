@@ -13,12 +13,13 @@ namespace _Scripts.Factory
         
         [SerializeField] private List<GameObject> _foods;
 
+        public List<GameObject> Foods => _foods;
+
         private void Start()
         {
             SpawnFood();
         }
 
-        [ContextMenu("Spawn food")]
         public void SpawnFood()
         {
             for (int i = 0; i < _amountFood; i++)

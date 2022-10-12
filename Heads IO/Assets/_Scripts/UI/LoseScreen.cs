@@ -1,3 +1,4 @@
+using _Scripts.Enemy;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,12 +8,12 @@ namespace _Scripts.UI
 {
     public class LoseScreen : MonoBehaviour
     {
-        [SerializeField] private Player.Player _player;
+        [SerializeField] private DeathHandler _playerDeathHandler;
         [SerializeField] private Button _restartButton;
 
         private void Awake()
         {
-            _player.Died += ShowLoseScreen;
+            _playerDeathHandler.Died += ShowLoseScreen;
         }
 
         private void ShowLoseScreen()
@@ -28,7 +29,7 @@ namespace _Scripts.UI
 
         private void OnDestroy()
         {
-            _player.Died -= ShowLoseScreen;
+            _playerDeathHandler.Died -= ShowLoseScreen;
         }
     }
 }

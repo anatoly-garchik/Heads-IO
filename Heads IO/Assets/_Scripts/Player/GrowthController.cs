@@ -1,4 +1,4 @@
-using _Scripts.Camera;
+using System;
 using DG.Tweening;
 using UnityEngine;
 
@@ -6,19 +6,18 @@ namespace _Scripts.Player
 {
     public class GrowthController : MonoBehaviour
     {
-        [SerializeField] private FoodCollector _foodCollector;
+        private const float AnimationTime = 0.3f;
+        
         [SerializeField] private Transform _model;
         [SerializeField] private float _maxScaleValue;
-        [SerializeField] private CameraFollow _cameraFollow;
-        
-        private void Awake()
-        {
-            _foodCollector.EatTaken += IncreaseCharacter;
-        }
+        [SerializeField] private float _scaleFactor;
 
+        public event Action<float> ScaleIncreased;
+        
         public void IncreaseCharacter(float points)
         {
-            float scaleFactor = points / 30;
+            float scaleFactor = points / _scaleFactor;
+            
             Vector3 newScale = new Vector3(
                 transform.localScale.x + scaleFactor,
                 transform.localScale.y + scaleFactor, 
@@ -28,9 +27,7 @@ namespace _Scripts.Player
             if (newScale.x < _maxScaleValue)
             {
                 transform.localScale = newScale;
-                
-                if (_cameraFollow != null)
-                    _cameraFollow.ChangeOffset(points);
+                ScaleIncreased?.Invoke(points);
             }
             
             IncreaseAnimation();
@@ -38,16 +35,15 @@ namespace _Scripts.Player
 
         private void IncreaseAnimation()
         {
-            _model.DOScaleY(1.5f, 0.3f).SetEase(Ease.OutBack).OnComplete(() =>
+            _model.DOScaleY(1.5f, AnimationTime).SetEase(Ease.OutBounce).OnComplete(() =>
             {
-                _model.DOScaleY(1, 0.3f).SetEase(Ease.OutBack);
+                _model.DOScaleY(1, AnimationTime).SetEase(Ease.OutBounce);
             });
         }
 
         private void OnDestroy()
         {
             _model.DOKill();
-            _foodCollector.EatTaken -= IncreaseCharacter;
         }
     }
 }
