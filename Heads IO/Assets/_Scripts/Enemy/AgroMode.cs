@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using _Scripts.CommonCharacterComponents;
 using UnityEngine;
@@ -27,6 +28,14 @@ namespace _Scripts.Enemy
         private void Start()
         {
             StartCoroutine(Timer());
+        }
+
+        private void Update()
+        {
+            if (_player != null &&
+                TargetForAttack == _player.transform &&
+                _player.PointsStorage.AmountPoints >= _pointsStorage.AmountPoints)
+                TargetForAttack = null;
         }
 
         private IEnumerator Timer()

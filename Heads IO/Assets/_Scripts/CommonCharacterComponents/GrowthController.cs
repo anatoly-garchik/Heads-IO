@@ -7,8 +7,11 @@ namespace _Scripts.CommonCharacterComponents
     public class GrowthController : MonoBehaviour
     {
         private const float AnimationTime = 0.3f;
-        
+
+        [SerializeField] private SphereCollider _sphereCollider;
+        [SerializeField] private Transform _modelPivot;
         [SerializeField] private Transform _model;
+        [SerializeField] private Transform _canvas;
         [SerializeField] private float _maxScaleValue;
         [SerializeField] private float _scaleFactor;
 
@@ -17,20 +20,38 @@ namespace _Scripts.CommonCharacterComponents
         public void IncreaseCharacter(float points)
         {
             float scaleFactor = points / _scaleFactor;
-            
-            Vector3 newScale = new Vector3(
-                transform.localScale.x + scaleFactor,
-                transform.localScale.y + scaleFactor, 
-                transform.localScale.z + scaleFactor);
 
+            UpdateModel(points, scaleFactor);
+            UpdateCanvas(scaleFactor);
+            UpdateCollider(scaleFactor);
 
-            if (newScale.x < _maxScaleValue)
-            {
-                transform.localScale = newScale;
-                ScaleIncreased?.Invoke(points);
-            }
-            
             IncreaseAnimation();
+        }
+
+        private void UpdateModel(float points, float scaleFactor)
+        {
+            Vector3 newScale = new Vector3(
+                _modelPivot.localScale.x + scaleFactor,
+                _modelPivot.localScale.y + scaleFactor, 
+                _modelPivot.localScale.z + scaleFactor);
+
+
+            if (!(newScale.x < _maxScaleValue)) return;
+            
+            _modelPivot.localScale = newScale;
+            ScaleIncreased?.Invoke(points);
+        }
+
+        private void UpdateCanvas(float scaleFactor)
+        {
+            if (_canvas != null) 
+                _canvas.transform.position = new Vector3(_canvas.transform.position.x, _canvas.transform.position.y + scaleFactor, _canvas.transform.position.z);
+        }
+
+        private void UpdateCollider(float scaleFactor)
+        {
+            _sphereCollider.radius += scaleFactor / 2;
+            _sphereCollider.center = new Vector3(0, _sphereCollider.radius - 0.5f , 0);
         }
 
         private void IncreaseAnimation()

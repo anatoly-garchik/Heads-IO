@@ -17,7 +17,7 @@ namespace _Scripts.Enemy
 
         private void TakeFood(Food.Food food)
         {
-            _pointsStorage.AddPoints(food.Points);
+            _pointsStorage.AddPoints(food.Points / 2);
             food.Take();
         }
 
