@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace _Scripts.Enemy
+namespace _Scripts.CommonCharacterComponents
 {
     public class DeathHandler : MonoBehaviour
     {

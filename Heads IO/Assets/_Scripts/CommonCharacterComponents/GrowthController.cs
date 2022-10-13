@@ -2,7 +2,7 @@ using System;
 using DG.Tweening;
 using UnityEngine;
 
-namespace _Scripts.Player
+namespace _Scripts.CommonCharacterComponents
 {
     public class GrowthController : MonoBehaviour
     {

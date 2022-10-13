@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using _Scripts.Food;
-using _Scripts.Player;
 using UnityEngine;
 using Zenject;
 
@@ -8,40 +7,26 @@ namespace _Scripts.Enemy
 {
     public class EnemyTargetHandler : MonoBehaviour
     {
-        [SerializeField] private EnemyPointsHandler _enemyPoints;
+        [SerializeField] private AgroMode _agroMode;
 
-        private PlayerPointsHandler _playerPoints;
         private FoodController _foodController;
         private bool _isAgroMode;
         
         public Transform Target { get; private set; }
 
         [Inject]
-        private void Construct(FoodController foodController,
-            PlayerPointsHandler playerPointsHandler)
+        private void Construct(FoodController foodController)
         {
             _foodController = foodController;
-            _playerPoints = playerPointsHandler;
+      
         }
 
         private void Update()
         {
+            Target = _agroMode.TargetForAttack;
+            
             if (Target == null)
                 Target = GetTargetFood();
-
-            if (_playerPoints == null)
-                return;
-            
-            if (_enemyPoints.AmountPoints > _playerPoints.AmountPoints)
-            {
-                Target = _playerPoints.transform;
-                _isAgroMode = true;
-            }
-            else if (_enemyPoints.AmountPoints < _playerPoints.AmountPoints && _isAgroMode)
-            {
-                _isAgroMode = false;
-                Target = null;
-            }
         }
 
         private Transform GetTargetFood()

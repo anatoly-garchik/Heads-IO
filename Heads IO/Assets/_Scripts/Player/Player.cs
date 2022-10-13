@@ -1,52 +1,15 @@
-using System;
+using _Scripts.CommonCharacterComponents;
+using _Scripts.Enemy;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace _Scripts.Player
 {
     public class Player : MonoBehaviour
     {
-        [FormerlySerializedAs("collectorTrigger")] [FormerlySerializedAs("_foodCollector")] [SerializeField] private PlayerCollectorTrigger playerCollectorTrigger;
-        [SerializeField] private GrowthController _growthController;
+        [SerializeField] private PointsStorage _pointsStorage;
+        [SerializeField] private DeathHandler _deathHandler;
 
-        public float AmountPoints { get; private set; } = 10;
-
-        public event Action Died;
-        
-        /*private void Awake()
-        {
-            playerCollectorTrigger.FoodTriggered += AddPoints;
-            playerCollectorTrigger.EnemyTriggered += TryTakeEnemyPoints;
-        }*/
-
-        public void KillPlayer()
-        {
-            Died?.Invoke();
-            Destroy(gameObject);
-        }
-
-        private void AddPoints(float points)
-        {
-            if (points > 0)
-            {
-                AmountPoints += points;
-            }
-        }
-
-        private void TryTakeEnemyPoints(Bot.Enemy enemy)
-        {
-            if (enemy.AmountPoints < AmountPoints)
-            {
-                AddPoints(enemy.AmountPoints);
-                _growthController.IncreaseCharacter(enemy.AmountPoints);
-                Destroy(enemy.gameObject);
-            }
-        }
-
-        /*private void OnDestroy()
-        {
-            playerCollectorTrigger.FoodTriggered -= AddPoints;
-            playerCollectorTrigger.EnemyTriggered -= TryTakeEnemyPoints;
-        }*/
+        public PointsStorage PointsStorage => _pointsStorage;
+        public DeathHandler DeathHandler => _deathHandler;
     }
 }

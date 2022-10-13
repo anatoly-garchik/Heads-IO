@@ -1,6 +1,7 @@
+using _Scripts.Player;
 using UnityEngine;
 
-namespace _Scripts.Player
+namespace _Scripts.InputService
 {
     public class InputService : IInputService
     {

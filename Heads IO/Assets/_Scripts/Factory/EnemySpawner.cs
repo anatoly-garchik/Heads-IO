@@ -1,4 +1,4 @@
-using _Scripts.Bot;
+using _Scripts.Enemy;
 using UnityEngine;
 using Zenject;
 
@@ -10,11 +10,13 @@ namespace _Scripts.Factory
         [SerializeField] private int _amountEnemy;
 
         private EnemyFactory _enemyFactory;
+        private IEnemyContainer _enemyContainer;
 
         [Inject]
-        private void Construct(EnemyFactory enemyFactory)
+        private void Construct(EnemyFactory enemyFactory, IEnemyContainer enemyContainer)
         {
             _enemyFactory = enemyFactory;
+            _enemyContainer = enemyContainer;
         }
         
         private void Start()
@@ -33,7 +35,7 @@ namespace _Scripts.Factory
             Vector3 position = new Vector3(Random.Range(-_rangeToSpawnEnemy, _rangeToSpawnEnemy), 0f,
                 Random.Range(-_rangeToSpawnEnemy, _rangeToSpawnEnemy));
             
-            GameObject enemy = _enemyFactory.CreateEnemy(position, Quaternion.identity, transform);
+            _enemyContainer.AddEnemy(_enemyFactory.CreateEnemy(position, Quaternion.identity, transform));
         }
     }
 }

@@ -1,4 +1,4 @@
-using _Scripts.Player;
+using _Scripts.CommonCharacterComponents;
 using UnityEngine;
 
 namespace _Scripts.Camera
@@ -20,7 +20,7 @@ namespace _Scripts.Camera
             _playerGrowthController.ScaleIncreased += ChangeOffset;
         }
 
-        private void FixedUpdate()
+        private void LateUpdate()
         {
             if (_target == null)
                 return;

@@ -1,4 +1,6 @@
+using _Scripts.InputService;
 using UnityEngine;
+using UnityEngine.AI;
 using Zenject;
 
 namespace _Scripts.Player
@@ -6,7 +8,7 @@ namespace _Scripts.Player
     [RequireComponent(typeof(Rigidbody))]
     public class PlayerMoveHandler : MonoBehaviour
     {
-        [SerializeField] private Rigidbody _rigidbody;
+        [SerializeField] private NavMeshAgent _navMeshAgent;
         [SerializeField] private float _speed;
 
         private IInputService _inputService;
@@ -25,7 +27,7 @@ namespace _Scripts.Player
             if (input.magnitude < 0.1f)
             {
                 _destination = Vector3.zero;
-                _rigidbody.velocity = _destination;
+                _navMeshAgent.velocity = _destination;
                 return;
             }
 
@@ -34,7 +36,7 @@ namespace _Scripts.Player
             Move();
         }
 
-        private void Move() => 
-            _rigidbody.velocity = _destination;
+        private void Move() =>
+            _navMeshAgent.velocity = _destination;
     }
 }

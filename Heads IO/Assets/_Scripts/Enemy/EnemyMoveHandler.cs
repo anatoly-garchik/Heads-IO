@@ -1,11 +1,12 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace _Scripts.Enemy
 {
     public class EnemyMoveHandler : MonoBehaviour
     {
         [SerializeField] private EnemyTargetHandler _enemyTargetHandler;
-        [SerializeField] private Rigidbody _rigidbody;
+        [SerializeField] private NavMeshAgent _navMeshAgent;
         [SerializeField] private float _speed;
         
         private void Update()
@@ -18,7 +19,7 @@ namespace _Scripts.Enemy
 
         private void Move()
         {
-            _rigidbody.velocity = transform.forward * _speed;
+            _navMeshAgent.velocity = transform.forward * _speed;
         }
     }
 }

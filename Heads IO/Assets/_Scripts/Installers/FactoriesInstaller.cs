@@ -1,4 +1,4 @@
-using _Scripts.Bot;
+using _Scripts.Enemy;
 using _Scripts.Food;
 using UnityEngine;
 using Zenject;
