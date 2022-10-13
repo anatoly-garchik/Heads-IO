@@ -17,7 +17,7 @@ namespace _Scripts.Player
         private void TakeFood(Food.Food food)
         {
             _pointsStorage.AddPoints(food.Points);
-            food.Take();
+            food.Take(transform);
         }
 
         private void TryEatEnemy(Enemy.Enemy enemy)

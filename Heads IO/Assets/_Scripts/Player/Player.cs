@@ -1,5 +1,4 @@
 using _Scripts.CommonCharacterComponents;
-using _Scripts.Enemy;
 using UnityEngine;
 
 namespace _Scripts.Player

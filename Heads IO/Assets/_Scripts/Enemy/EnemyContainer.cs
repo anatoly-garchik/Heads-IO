@@ -8,6 +8,8 @@ namespace _Scripts.Enemy
     {
         private readonly List<Enemy> _enemies = new List<Enemy>();
 
+        public event Action EnemyRemoved;
+
         public void AddEnemy(Enemy enemy)
         {
             _enemies.Add(enemy);
@@ -24,8 +26,11 @@ namespace _Scripts.Enemy
         public List<Enemy> GetAllEnemy() => 
             _enemies.ToList();
 
-        private void RemoveEnemy(Enemy enemy) => 
+        private void RemoveEnemy(Enemy enemy)
+        {
             _enemies.Remove(enemy);
+            EnemyRemoved?.Invoke();
+        }
     }
 }
  

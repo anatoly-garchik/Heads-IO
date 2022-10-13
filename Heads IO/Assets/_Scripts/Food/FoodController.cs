@@ -27,7 +27,7 @@ namespace _Scripts.Food
 
         public List<Transform> GetAllFoodItems()
         {
-            List<Transform> foodPositions = new List<Transform>();
+            List<Transform> foodPositions = new List<Transform>(_foods.Count);
 
             foreach (var food in _foods)
                 foodPositions.Add(food.transform);
