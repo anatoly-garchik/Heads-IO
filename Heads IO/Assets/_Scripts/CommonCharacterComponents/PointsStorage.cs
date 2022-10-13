@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace _Scripts.CommonCharacterComponents
@@ -9,6 +10,8 @@ namespace _Scripts.CommonCharacterComponents
         
         public int AmountPoints { get; private set; }
 
+        public event Action AmountPointsChanged;
+
         private void Awake()
         {
             AmountPoints = _defaultPoints;
@@ -18,6 +21,7 @@ namespace _Scripts.CommonCharacterComponents
         {
             AmountPoints += points;
             _growthController.IncreaseCharacter(points);
+            AmountPointsChanged?.Invoke();
         }
     }
 }

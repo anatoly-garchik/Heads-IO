@@ -19,7 +19,7 @@ namespace _Scripts.Factory
             _enemyContainer = enemyContainer;
         }
         
-        private void Start()
+        private void Awake()
         {
             SpawnAllEnemyInStartGame();
         }
