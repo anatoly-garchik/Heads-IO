@@ -51,7 +51,7 @@ namespace _Scripts.CommonCharacterComponents
         private void UpdateCollider(float scaleFactor)
         {
             _sphereCollider.radius += scaleFactor / 2;
-            _sphereCollider.center = new Vector3(0, _sphereCollider.radius - 0.5f , 0);
+            _sphereCollider.center = new Vector3(0, _sphereCollider.radius, 0);
         }
 
         private void IncreaseAnimation()
