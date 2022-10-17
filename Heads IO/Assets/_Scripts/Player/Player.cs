@@ -7,8 +7,10 @@ namespace _Scripts.Player
     {
         [SerializeField] private PointsStorage _pointsStorage;
         [SerializeField] private DeathHandler _deathHandler;
+        [SerializeField] private JumpActivator _jumpActivator;
 
         public PointsStorage PointsStorage => _pointsStorage;
         public DeathHandler DeathHandler => _deathHandler;
+        public JumpActivator JumpActivator => _jumpActivator;
     }
 }

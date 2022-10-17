@@ -1,6 +1,7 @@
 using _Scripts.Player;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace _Scripts.UI.HUD
 {
@@ -11,10 +12,17 @@ namespace _Scripts.UI.HUD
         [SerializeField] private Image _progressBackground;
         [SerializeField] private Button _button;
         [Header("Jump activator settings")]
-        [SerializeField] private JumpActivator _jumpActivator;
         [SerializeField] private int _amountFoodToEnableJump;
         [SerializeField] private int _amountEnemiesToEnableJump;
 
+        private JumpActivator _jumpActivator;
+        
+        [Inject]
+        private void Construct(Player.Player player)
+        {
+            _jumpActivator = player.JumpActivator;
+        }
+        
         private void Awake()
         {
             _jumpActivator.UpdateProgress += UpdateProgress;
@@ -34,7 +42,7 @@ namespace _Scripts.UI.HUD
         private void UpdateProgress(bool isEnemy)
         {
             if (isEnemy)
-                _progressBar.fillAmount = 1 / (float)_amountEnemiesToEnableJump;
+                _progressBar.fillAmount += 1 / (float)_amountEnemiesToEnableJump;
             else
                 _progressBar.fillAmount += 1 / (float)_amountFoodToEnableJump;
 
@@ -42,11 +50,11 @@ namespace _Scripts.UI.HUD
                 UpdateUIElements(1, true, 1);
         }
 
-        private void UpdateUIElements(float progressValue, bool isInteractable, float bgAlpha)
+        private void UpdateUIElements(float progressValue, bool isInteractable, float backgroundAlpha)
         {
             _progressBar.fillAmount = progressValue;
             _button.interactable = isInteractable;
-            _progressBackground.color = new Color(1, 1, 1, bgAlpha);
+            _progressBackground.color = new Color(1, 1, 1, backgroundAlpha);
         }
 
         private void OnDestroy()
