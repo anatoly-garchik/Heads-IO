@@ -3,6 +3,7 @@ using _Scripts.Infrastructure;
 using _Scripts.Services.Coroutines;
 using _Scripts.Services.LoadScene;
 using _Scripts.Services.ScreenFade;
+using _Scripts.UI.View;
 using UnityEngine;
 using Zenject;
 
@@ -12,14 +13,16 @@ namespace _Scripts.Installers
     {
         [SerializeField] private GameObject _coroutineRunner;
         [SerializeField] private GameObject _screenFade;
+        [SerializeField] private GameObject _ui;
         
         public override void InstallBindings()
         {
-            Container.Bind<ICoroutineRunner>().FromComponentInNewPrefab(_coroutineRunner).AsSingle();
-            Container.Bind<IScreenFader>().FromComponentInNewPrefab(_screenFade).AsSingle();
             Container.Bind<IStateFactory>().To<StateFactory>().AsSingle();
             Container.Bind<ISceneLoader>().To<SceneLoader>().AsSingle();
             Container.Bind<GameController>().FromNew().AsSingle();
+            Container.Bind<ICoroutineRunner>().FromComponentInNewPrefab(_coroutineRunner).AsSingle();
+            Container.Bind<IScreenFader>().FromComponentInNewPrefab(_screenFade).AsSingle();
+            Container.Bind<IViewManager>().FromComponentInNewPrefab(_ui).AsSingle();
         }
     }
 }

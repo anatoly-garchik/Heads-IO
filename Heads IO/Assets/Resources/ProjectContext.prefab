@@ -31,6 +31,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6891578352440222126}
+  - {fileID: 4510982221265794152}
+  - {fileID: 645129303993508461}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -76,6 +78,72 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f36e37fb74779904f9caa9ba765a74f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &381699322333437753
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4510982221265794152}
+  - component: {fileID: 8287669220991641265}
+  - component: {fileID: 8399477526940568218}
+  m_Layer: 0
+  m_Name: FactoriesInstaller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4510982221265794152
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381699322333437753}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4092438920768598}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8287669220991641265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381699322333437753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8110994f0d076004c9af6d860e5b3dcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8399477526940568218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381699322333437753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 616e60bb5890fdc4684e92b8099d015b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _foods:
+  - {fileID: 7862447717023501934, guid: 77b31f13ac349e64eb6cd56371281426, type: 3}
+  _enemies:
+  - {fileID: 5883643329300684310, guid: fa7cad9b455a27a4684817a86b196807, type: 3}
+  - {fileID: 7652437728165113185, guid: 5fd67a66765f73f48bdb52961745fc5f, type: 3}
+  - {fileID: 4584118140092325304, guid: 0bd1c856d12f7ac4f93d808ac7bcb1e6, type: 3}
+  - {fileID: 4298733996707766737, guid: 16b1c7e966ba8514b9094daeaebe9e9e, type: 3}
+  - {fileID: 3911847648884981759, guid: 44169116f148c7a49b402b4f7601aa37, type: 3}
+  _player: {fileID: 6775765967491825755, guid: 62345a326deea7c459dba5033a29ebd0, type: 3}
 --- !u!1 &5109789412938700174
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,3 +192,69 @@ MonoBehaviour:
     type: 3}
   _screenFade: {fileID: 1185074942423592591, guid: eacbb97de45226d4a9508d2304c3cd40,
     type: 3}
+  _ui: {fileID: 2064986376946482915, guid: 520662c46562b1949ac456bb62cfb5e5, type: 3}
+--- !u!1 &5366835148441583485
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 645129303993508461}
+  - component: {fileID: 791902668213676658}
+  - component: {fileID: 7225646415042185422}
+  m_Layer: 0
+  m_Name: Factories
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &645129303993508461
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5366835148441583485}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4092438920768598}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &791902668213676658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5366835148441583485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59a8b610d8e04567b6735de15c539141, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _foodPrefabs:
+  - {fileID: 7862447717023501934, guid: 77b31f13ac349e64eb6cd56371281426, type: 3}
+--- !u!114 &7225646415042185422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5366835148441583485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8726e76e203d63a44896f1f66abbf247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyPrefabs:
+  - {fileID: 5883643329300684310, guid: fa7cad9b455a27a4684817a86b196807, type: 3}
+  - {fileID: 7652437728165113185, guid: 5fd67a66765f73f48bdb52961745fc5f, type: 3}
+  - {fileID: 4584118140092325304, guid: 0bd1c856d12f7ac4f93d808ac7bcb1e6, type: 3}
+  - {fileID: 4298733996707766737, guid: 16b1c7e966ba8514b9094daeaebe9e9e, type: 3}
+  - {fileID: 3911847648884981759, guid: 44169116f148c7a49b402b4f7601aa37, type: 3}

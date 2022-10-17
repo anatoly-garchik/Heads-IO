@@ -1,11 +1,11 @@
 using UnityEngine;
 using Zenject;
 
-namespace _Scripts.Enemy
+namespace _Scripts.Factory
 {
     public class EnemyFactory : MonoBehaviour
     {
-        [SerializeField] private Enemy[] _enemyPrefabs;
+        [SerializeField] private Enemy.Enemy[] _enemyPrefabs;
 
         private DiContainer _diContainer;
 
@@ -15,9 +15,9 @@ namespace _Scripts.Enemy
             _diContainer = diContainer;
         }
         
-        public Enemy CreateEnemy(Vector3 position, Quaternion rotation, Transform parent = null)
+        public Enemy.Enemy CreateEnemy(Vector3 position, Quaternion rotation, Transform parent = null)
         {
-            return _diContainer.InstantiatePrefabForComponent<Enemy>(_enemyPrefabs[Random.Range(0, _enemyPrefabs.Length)], position, rotation, parent);
+            return _diContainer.InstantiatePrefabForComponent<Enemy.Enemy>(_enemyPrefabs[Random.Range(0, _enemyPrefabs.Length)], position, rotation, parent);
         }
     }
 }

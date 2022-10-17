@@ -29,18 +29,18 @@ namespace _Scripts.UI
 
         private void Start()
         {
-            _viewManager.ShowView<GameplayView>();
+            _viewManager.Show<GameplayView>();
         }
 
         private void CheckEnemyAmount()
         {
             if (_enemyContainer.GetAllEnemy().Count == 0)
-                _viewManager.ShowView<GameOverView>();
+                _viewManager.Show<GameOverView>();
         }
 
         private void OnDiedPlayer()
         {
-            _viewManager.ShowView<GameOverView>();
+            _viewManager.Show<GameOverView>();
         }
 
         private void OnDestroy()

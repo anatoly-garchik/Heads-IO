@@ -1,20 +1,14 @@
-using Zenject;
+using System;
 
 namespace _Scripts.UI.View
 {
     public class MenuView : View
     {
-        private ViewManager _viewManager;
-
-        [Inject]
-        private void Construct(ViewManager viewManager)
-        {
-            _viewManager = viewManager;
-        }
+        public event Action GameplayRequested;
 
         public void StartGame()
         {
-            _viewManager.ShowView<GameplayView>();
+            GameplayRequested?.Invoke();
         }
     }
 }

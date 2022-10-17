@@ -17,14 +17,14 @@ namespace _Scripts.UI.View
         public virtual void Hide()
         {
             _viewAnimation.Hide();
-
-            StartCoroutine(Disable());
+            gameObject.SetActive(false);
+            /*StartCoroutine(Disable());
             
             IEnumerator Disable()
             {
                 yield return new WaitForSeconds(_hideTime);
                 gameObject.SetActive(false);
-            }
+            }*/
         }
     }
 }

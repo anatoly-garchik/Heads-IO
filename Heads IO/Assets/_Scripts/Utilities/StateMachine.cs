@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using _Scripts.Services.Coroutines;
 
 namespace _Scripts.Utilities
 {
@@ -23,9 +22,7 @@ namespace _Scripts.Utilities
             Type stateType = from.GetType();
 
             if (!_transitionByStateType.ContainsKey(stateType))
-            {
                 _transitionByStateType.Add(stateType, new List<Transition>());
-            }
             
             _transitionByStateType[stateType].Add(new Transition(to, condition));
         }

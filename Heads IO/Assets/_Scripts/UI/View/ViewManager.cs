@@ -17,7 +17,12 @@ namespace _Scripts.UI.View
             CreateViewDictionary();
         }
 
-        public void ShowView<T>() where T : IView
+        public T View<T>() where T : IView
+        {
+            return (T) _viewsByType[typeof(T)];
+        }
+
+        public void Show<T>() where T : IView
         {
             Type viewType = typeof(T);
             
@@ -35,14 +40,12 @@ namespace _Scripts.UI.View
             }
         }
 
-        public void HideView<T>() where T : IView
+        public void Hide<T>() where T : IView
         {
             Type viewType = typeof(T);
 
             if (_viewsByType.ContainsKey(viewType))
-            {
                 _viewsByType[viewType].Hide();
-            }
         }
 
         private void CreateViewDictionary()
@@ -55,6 +58,8 @@ namespace _Scripts.UI.View
                 
                 if (!_viewsByType.ContainsKey(type))
                     _viewsByType.Add(type, view);
+                
+                view.Hide();
             }
         }
     }

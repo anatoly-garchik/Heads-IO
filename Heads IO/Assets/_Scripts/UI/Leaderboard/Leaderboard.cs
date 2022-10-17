@@ -10,7 +10,7 @@ namespace _Scripts.UI.Leaderboard
 {
     public class Leaderboard : MonoBehaviour
     {
-        [SerializeField] private LeaderboardItem _leaderboardItem;
+        /*[SerializeField] private LeaderboardItem _leaderboardItem;
 
         private readonly Dictionary<PointsStorage, LeaderboardItem> _items = new Dictionary<PointsStorage, LeaderboardItem>();
         
@@ -75,6 +75,6 @@ namespace _Scripts.UI.Leaderboard
             LeaderboardItem item = Instantiate(_leaderboardItem, transform);
             item.Init(isPlayerItem, pointsStorage);
             _items.Add(pointsStorage, item);
-        }
+        }*/
     }
 }

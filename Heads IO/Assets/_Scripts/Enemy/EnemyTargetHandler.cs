@@ -18,7 +18,6 @@ namespace _Scripts.Enemy
         private void Construct(FoodController foodController)
         {
             _foodController = foodController;
-      
         }
 
         private void Update()

@@ -1,12 +1,14 @@
-using UnityEngine.SceneManagement;
+using System;
 
 namespace _Scripts.UI.View
 {
     public class GameOverView : View
     {
-        public void RestartGame()
+        public event Action MenuRequested;
+
+        public void LoadMenu()
         {
-            SceneManager.LoadScene(0);
+            MenuRequested?.Invoke();
         }
     }
 }

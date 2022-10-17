@@ -2,7 +2,8 @@ namespace _Scripts.UI.View
 {
     public interface IViewManager
     {
-        public void ShowView<T>() where T : IView;
-        public void HideView<T>() where T : IView;
+        public T View<T>() where T : IView;
+        public void Show<T>() where T : IView;
+        public void Hide<T>() where T : IView;
     }
 }

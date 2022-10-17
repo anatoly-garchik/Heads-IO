@@ -7,7 +7,7 @@ namespace _Scripts.UI.HUD
 {
     public class JumpActivatorProgressHandler : MonoBehaviour
     {
-        [Header("UI elements")]
+        /*[Header("UI elements")]
         [SerializeField] private Image _progressBar;
         [SerializeField] private Image _progressBackground;
         [SerializeField] private Button _button;
@@ -60,6 +60,6 @@ namespace _Scripts.UI.HUD
         private void OnDestroy()
         {
             _jumpActivator.UpdateProgress -= UpdateProgress;
-        }
+        }*/
     }
 }

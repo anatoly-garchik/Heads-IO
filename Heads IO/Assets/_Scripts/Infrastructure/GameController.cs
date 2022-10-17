@@ -14,8 +14,8 @@ namespace _Scripts.Infrastructure
             GameplayState gameplayState = stateFactory.CreateState<GameplayState>();
             
             AddTransition(bootState, menuState, () => bootState.IsBootStateLoaded);
-            /*AddTransition(menuState, gameplayState, );
-            AddTransition(gameplayState, menuState, );*/
+            AddTransition(menuState, gameplayState, () =>  menuState.IsGameplayRequested);
+            AddTransition(gameplayState, menuState, () => gameplayState.IsMenuRequested);
             
             SetState(bootState);
         }
