@@ -1,3 +1,4 @@
+using _Scripts.Factory;
 using _Scripts.Player;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,36 +8,28 @@ namespace _Scripts.UI.HUD
 {
     public class JumpActivatorProgressHandler : MonoBehaviour
     {
-        /*[Header("UI elements")]
+        [Header("UI elements")]
         [SerializeField] private Image _progressBar;
         [SerializeField] private Image _progressBackground;
-        [SerializeField] private Button _button;
         [Header("Jump activator settings")]
         [SerializeField] private int _amountFoodToEnableJump;
         [SerializeField] private int _amountEnemiesToEnableJump;
 
         private JumpActivator _jumpActivator;
+        private GameFactory _gameFactory;
         
         [Inject]
-        private void Construct(Player.Player player)
+        private void Construct(GameFactory gameFactory)
         {
-            _jumpActivator = player.JumpActivator;
-        }
-        
-        private void Awake()
-        {
-            _jumpActivator.UpdateProgress += UpdateProgress;
+            _gameFactory = gameFactory;
         }
 
         private void Start()
         {
-            UpdateUIElements(0, false, 0.5f);
-        }
-
-        public void UseJump()
-        {
-            _jumpActivator.ActivateJump();
-            UpdateUIElements(0, false, 0.5f);
+            _jumpActivator = _gameFactory.Player.JumpActivator;
+            _jumpActivator.UpdateProgress += UpdateProgress;
+            
+            UpdateUIElements(0, 0.5f);
         }
 
         private void UpdateProgress(bool isEnemy)
@@ -47,19 +40,18 @@ namespace _Scripts.UI.HUD
                 _progressBar.fillAmount += 1 / (float)_amountFoodToEnableJump;
 
             if (_progressBar.fillAmount >= 1)
-                UpdateUIElements(1, true, 1);
+                UpdateUIElements(0, 0.5f);
         }
 
-        private void UpdateUIElements(float progressValue, bool isInteractable, float backgroundAlpha)
+        private void UpdateUIElements(float progressValue, float backgroundAlpha)
         {
             _progressBar.fillAmount = progressValue;
-            _button.interactable = isInteractable;
             _progressBackground.color = new Color(1, 1, 1, backgroundAlpha);
         }
 
         private void OnDestroy()
         {
             _jumpActivator.UpdateProgress -= UpdateProgress;
-        }*/
+        }
     }
 }

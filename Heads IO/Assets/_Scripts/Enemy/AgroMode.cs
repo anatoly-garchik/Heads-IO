@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using _Scripts.CommonCharacterComponents;
 using UnityEngine;
@@ -19,15 +18,19 @@ namespace _Scripts.Enemy
         public Transform TargetForAttack { get; private set; }
         
         [Inject]
-        private void Construct(Player.Player player, IEnemyContainer enemyContainer)
+        private void Construct(IEnemyContainer enemyContainer)
         {
-            _player = player;
             _enemyContainer = enemyContainer;
         }
 
         private void Start()
         {
             StartCoroutine(Timer());
+        }
+
+        public void SetTarget(Player.Player player)
+        {
+            _player = player;
         }
 
         private void Update()

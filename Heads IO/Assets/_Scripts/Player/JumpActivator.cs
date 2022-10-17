@@ -11,7 +11,6 @@ namespace _Scripts.Player
         [SerializeField] private CollectorTrigger _collectorTrigger;
 
         private int _currentAmountFoodToEnableJump;
-        private int _currentAmountEnemiesToEnableJump;
 
         private Coroutine _routine;
 
@@ -33,17 +32,23 @@ namespace _Scripts.Player
         {
             if (_routine != null) return;
             UpdateProgress?.Invoke(false);
+            _currentAmountFoodToEnableJump++;
+            
+            if (_currentAmountFoodToEnableJump >= 8)
+                _routine = StartCoroutine(EnableJump());
         }
 
         private void OnTriggeredEnemy(Enemy.Enemy enemy)
         {
             if (_routine != null) return;
             UpdateProgress?.Invoke(true);
+            _routine = StartCoroutine(EnableJump());
         }
         
         private IEnumerator EnableJump()
         {
             JumpEnabled?.Invoke(true);
+            _currentAmountFoodToEnableJump = 0;
             
             yield return new WaitForSeconds(_timeUseJump);
             

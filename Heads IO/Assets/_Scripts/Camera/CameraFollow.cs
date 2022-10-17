@@ -16,10 +16,15 @@ namespace _Scripts.Camera
         private void Awake()
         {
             Application.targetFrameRate = 60;
-
-            //_playerGrowthController.ScaleIncreased += ChangeOffset;
         }
 
+        public void SetTarget(Player.Player player)
+        {
+            _playerGrowthController = player.GrowthController;
+            _target = player.transform;
+            _playerGrowthController.ScaleIncreased += ChangeOffset;
+        }
+        
         private void LateUpdate()
         {
             if (_target == null)
@@ -41,7 +46,7 @@ namespace _Scripts.Camera
 
         private void OnDestroy()
         {
-            //_playerGrowthController.ScaleIncreased -= ChangeOffset;
+            _playerGrowthController.ScaleIncreased -= ChangeOffset;
         }
     }
 }

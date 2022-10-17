@@ -1,24 +1,28 @@
 using _Scripts.Factory;
 using _Scripts.Infrastructure.States.GameplayStates;
-using _Scripts.UI;
+using _Scripts.Services.Input;
 using _Scripts.Utilities;
 using UnityEngine;
 using Zenject;
+using FoodSpawner = _Scripts.Food.FoodSpawner;
 
 namespace _Scripts.Infrastructure
 {
     public class GameplayController : MonoBehaviour
     {
+        [SerializeField] private FoodSpawner _foodSpawner;
+        
         private StateMachine _stateMachine;
         private IStateFactory _stateFactory;
 
         [Inject]
-        private void Construct(IStateFactory stateFactory)
+        private void Construct(IStateFactory stateFactory, Joystick joystick, IInputService inputService)
         {
             _stateFactory = stateFactory;
+            inputService.SetJoystick(joystick);
         }
 
-        private void Start()
+        private void Awake()
         {
             _stateMachine = CreateGameplayStateMachine();
         }
@@ -36,6 +40,8 @@ namespace _Scripts.Infrastructure
             LevelSpawnOpponentsState levelSpawnOpponents = _stateFactory.CreateState<LevelSpawnOpponentsState>();
             LevelPlayState levelPlay = _stateFactory.CreateState<LevelPlayState>();
             LevelCompleteState levelComplete = _stateFactory.CreateState<LevelCompleteState>();
+            
+            levelSpawnOpponents.SetEnemyLinks(_foodSpawner);
 
             stateMachine.AddTransition(levelGenerate, levelSpawnOpponents, () => levelGenerate.IsCompleted);
             stateMachine.AddTransition(levelSpawnOpponents, levelPlay, () => levelSpawnOpponents.HasSpawnedOpponents);

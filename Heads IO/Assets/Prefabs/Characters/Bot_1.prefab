@@ -640,6 +640,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pointsStorage: {fileID: 2592197298524075456}
   _deathHandler: {fileID: 6053896817331769511}
+  _agroMode: {fileID: 3419505693483770621}
+  _enemyTargetHandler: {fileID: 1149079876469226736}
+  _skullMarkHandler: {fileID: 5185705851468702121}
 --- !u!114 &8649332864688565696
 MonoBehaviour:
   m_ObjectHideFlags: 0

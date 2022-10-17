@@ -16,7 +16,6 @@ namespace _Scripts.Installers
         {
             //Container.Bind<FoodSpawner>().FromInstance(foodSpawner).AsSingle();
             Container.Bind<Joystick>().FromInstance(_joystick).AsSingle();
-            //Container.Bind<IInputService>().To<InputService>().AsSingle();
             //Container.Bind<Player.Player >().FromInstance(_player).AsSingle();
             
            // Container.Bind<IEnemyContainer>().To<EnemyContainer>().AsSingle();

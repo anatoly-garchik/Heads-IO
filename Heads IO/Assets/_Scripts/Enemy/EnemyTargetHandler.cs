@@ -14,8 +14,7 @@ namespace _Scripts.Enemy
         
         public Transform Target { get; private set; }
 
-        [Inject]
-        private void Construct(FoodSpawner foodSpawner)
+        public void SetFoodSpawner(FoodSpawner foodSpawner)
         {
             _foodSpawner = foodSpawner;
         }

@@ -5,13 +5,18 @@ namespace _Scripts.Services.Input
     public class InputService : IInputService
     {
         private readonly UnityEngine.Camera _mainCamera;
-        private readonly Joystick _joystick;
+        
+        private Joystick _joystick;
 
-        /*private InputService(Joystick joystick)
+        private InputService()
+        {
+            _mainCamera = UnityEngine.Camera.main;
+        }
+
+        public void SetJoystick(Joystick joystick)
         {
             _joystick = joystick;
-            _mainCamera = UnityEngine.Camera.main;
-        }*/
+        }
         
         public Vector3 GetDirection()
         {

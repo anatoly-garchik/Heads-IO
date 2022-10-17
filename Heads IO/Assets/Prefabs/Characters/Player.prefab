@@ -426,6 +426,7 @@ MonoBehaviour:
   _pointsStorage: {fileID: 6775765967491825752}
   _deathHandler: {fileID: 6775765967491825754}
   _jumpActivator: {fileID: 6775765965554843925}
+  _growthController: {fileID: 6775765967491825744}
 --- !u!114 &6775765967491825747
 MonoBehaviour:
   m_ObjectHideFlags: 0

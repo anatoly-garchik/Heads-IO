@@ -10,6 +10,8 @@ namespace _Scripts.Factory
         [SerializeField] private Player.Player _player;
             
         private DiContainer _diContainer;
+        
+        public Player.Player Player { get; private set; }
 
         [Inject]
         private void Construct(DiContainer diContainer)
@@ -19,7 +21,8 @@ namespace _Scripts.Factory
 
         public Player.Player CreatePlayer(Vector3 position, Quaternion rotation, Transform parent = null)
         {
-            return _diContainer.InstantiatePrefabForComponent<Player.Player>(_player, position, rotation, parent);
+            Player = _diContainer.InstantiatePrefabForComponent<Player.Player>(_player, position, rotation, parent);
+            return Player;
         }
         
         public Food.Food CreateFood(Vector3 position, Quaternion rotation, Transform parent = null)

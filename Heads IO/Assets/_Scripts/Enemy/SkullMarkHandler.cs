@@ -9,10 +9,9 @@ namespace _Scripts.Enemy
         [SerializeField] private PointsStorage _pointsStorage;
         [SerializeField] private GameObject _skullMark;
         
-        /*private Player.Player _player;
+        private Player.Player _player;
 
-        [Inject]
-        private void Construct(Player.Player player)
+        public void SetTarget(Player.Player player)
         {
             _player = player;
         }
@@ -26,6 +25,6 @@ namespace _Scripts.Enemy
             if (_player.PointsStorage.AmountPoints < _pointsStorage.AmountPoints)
                 if (!_skullMark.activeSelf)
                     _skullMark.SetActive(true);
-        }*/
+        }
     }
 }

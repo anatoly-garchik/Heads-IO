@@ -25,8 +25,8 @@ namespace _Scripts.Installers
             Container.Bind<GameController>().FromNew().AsSingle();
 
             Container.Bind<UIMediator>().AsSingle();
-            //Container.Bind<IInputService>().To<InputService>().AsSingle();
-            //Container.Bind<IEnemyContainer>().To<EnemyContainer>().AsSingle();
+            Container.Bind<IInputService>().To<InputService>().AsSingle();
+            Container.Bind<IEnemyContainer>().To<EnemyContainer>().AsSingle();
             Container.Bind<ICoroutineRunner>().FromComponentInNewPrefab(_coroutineRunner).AsSingle();
             Container.Bind<IScreenFader>().FromComponentInNewPrefab(_screenFade).AsSingle();
             //Container.Bind<IViewManager>().FromComponentInNewPrefab(_ui).AsSingle();
