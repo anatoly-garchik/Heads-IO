@@ -1,5 +1,6 @@
 using _Scripts.Factory;
 using _Scripts.Infrastructure.States;
+using _Scripts.Infrastructure.States.GlobalGameStates;
 using _Scripts.Services.Coroutines;
 using _Scripts.Utilities;
 

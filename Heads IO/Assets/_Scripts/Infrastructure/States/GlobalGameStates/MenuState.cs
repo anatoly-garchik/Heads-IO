@@ -1,25 +1,27 @@
 using _Scripts.Services.LoadScene;
-using _Scripts.UI.View;
+using _Scripts.UI;
 using _Scripts.Utilities;
+using UnityEngine;
 
-namespace _Scripts.Infrastructure.States
+namespace _Scripts.Infrastructure.States.GlobalGameStates
 {
     public class MenuState : IState
     {
         private readonly ISceneLoader _sceneLoader;
-        private readonly IViewManager _viewManager;
+        private readonly UIMediator _uiMediator;
         
         public bool IsGameplayRequested { get; private set; }
 
-        public MenuState(ISceneLoader sceneLoader, IViewManager viewManager)
+        public MenuState(ISceneLoader sceneLoader, UIMediator uiMediator)
         {
             _sceneLoader = sceneLoader;
-            _viewManager = viewManager;
+            _uiMediator = uiMediator;
+            Debug.Log(_uiMediator);
         }
 
         public void Enter()
         {
-            _viewManager.View<MenuView>().GameplayRequested += OnGameplayRequested;
+            _uiMediator.GameplayRequested += OnGameplayRequested;
             _sceneLoader.LoadScene(SceneNameContainer.Menu, OnMenuLoaded);
         }
 
@@ -27,13 +29,13 @@ namespace _Scripts.Infrastructure.States
 
         public void Exit()
         {
-            _viewManager.View<MenuView>().GameplayRequested -= OnGameplayRequested;
+            _uiMediator.GameplayRequested -= OnGameplayRequested;
             IsGameplayRequested = false;
         }
 
         private void OnMenuLoaded()
         {
-            _viewManager.Show<MenuView>();
+            
         }
 
         private void OnGameplayRequested()

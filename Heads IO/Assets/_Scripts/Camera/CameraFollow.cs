@@ -17,7 +17,7 @@ namespace _Scripts.Camera
         {
             Application.targetFrameRate = 60;
 
-            _playerGrowthController.ScaleIncreased += ChangeOffset;
+            //_playerGrowthController.ScaleIncreased += ChangeOffset;
         }
 
         private void LateUpdate()
@@ -41,7 +41,7 @@ namespace _Scripts.Camera
 
         private void OnDestroy()
         {
-            _playerGrowthController.ScaleIncreased -= ChangeOffset;
+            //_playerGrowthController.ScaleIncreased -= ChangeOffset;
         }
     }
 }

@@ -8,13 +8,13 @@ namespace _Scripts.Installers
 {
     public class GameplayInstaller : MonoInstaller
     {
-        [SerializeField] private FoodSpawner foodSpawner;
+        //[SerializeField] private FoodSpawner foodSpawner;
         [SerializeField] private Joystick _joystick;
         //[SerializeField] private Player.Player _player;
         
         public override void InstallBindings()
         {
-            Container.Bind<FoodSpawner>().FromInstance(foodSpawner).AsSingle();
+            //Container.Bind<FoodSpawner>().FromInstance(foodSpawner).AsSingle();
             Container.Bind<Joystick>().FromInstance(_joystick).AsSingle();
             //Container.Bind<IInputService>().To<InputService>().AsSingle();
             //Container.Bind<Player.Player >().FromInstance(_player).AsSingle();

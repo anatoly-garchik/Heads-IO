@@ -1,7 +1,7 @@
 using _Scripts.Services.ScreenFade;
 using _Scripts.Utilities;
 
-namespace _Scripts.Infrastructure.States
+namespace _Scripts.Infrastructure.States.GlobalGameStates
 {
     public class BootState : IState
     {

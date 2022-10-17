@@ -9,15 +9,24 @@ namespace _Scripts.Utilities
 
         private Dictionary<Type, List<Transition>> _transitionByStateType;
         private List<Transition> _currentTransitions;
-        private IState _currentState;
+        
+        public IState CurrentState { get; private set; }
 
-        protected StateMachine()
+        public StateMachine()
         {
             _transitionByStateType = new Dictionary<Type, List<Transition>>();
             _currentTransitions = new List<Transition>();
         }
 
-        protected void AddTransition(IState from, IState to, Func<bool> condition)
+        public void Update()
+        {
+            if (TryGetTransition(out Transition transition))
+                SetState(transition.State);
+            
+            CurrentState?.Update();
+        }
+
+        public void AddTransition(IState from, IState to, Func<bool> condition)
         {
             Type stateType = from.GetType();
 
@@ -27,23 +36,15 @@ namespace _Scripts.Utilities
             _transitionByStateType[stateType].Add(new Transition(to, condition));
         }
 
-        protected void SetState(IState state)
+        public void SetState(IState state)
         {
-            if (_currentState == state)
+            if (CurrentState == state)
                 return;
             
-            _currentState?.Exit();
-            _currentState = state;
-            _currentTransitions = GetTransitions(_currentState);
-            _currentState.Enter();
-        }
-
-        protected void Update()
-        {
-            if (TryGetTransition(out Transition transition))
-                SetState(transition.State);
-            
-            _currentState?.Update();
+            CurrentState?.Exit();
+            CurrentState = state;
+            _currentTransitions = GetTransitions(CurrentState);
+            CurrentState.Enter();
         }
 
         private bool TryGetTransition(out Transition transition)
