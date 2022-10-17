@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Scripts.InputService
+namespace _Scripts.Services.Input
 {
     public interface IInputService
     {

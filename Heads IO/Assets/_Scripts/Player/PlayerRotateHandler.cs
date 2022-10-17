@@ -1,4 +1,4 @@
-using _Scripts.InputService;
+using _Scripts.Services.Input;
 using UnityEngine;
 using Zenject;
 

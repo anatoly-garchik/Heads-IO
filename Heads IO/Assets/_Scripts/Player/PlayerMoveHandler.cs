@@ -1,13 +1,12 @@
 using System.Collections;
 using _Scripts.Audio;
-using _Scripts.InputService;
+using _Scripts.Services.Input;
 using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
 
 namespace _Scripts.Player
 {
-    [RequireComponent(typeof(Rigidbody))]
     public class PlayerMoveHandler : MonoBehaviour
     {
         [SerializeField] private AudioManager _audioManager;
@@ -22,7 +21,6 @@ namespace _Scripts.Player
 
         private IInputService _inputService;
         private Vector3 _destination;
-
         private bool _isCanJump = true;
         private bool _isEnableJump;
 
