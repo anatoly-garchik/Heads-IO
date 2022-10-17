@@ -13,8 +13,8 @@ namespace _Scripts.Infrastructure
             MenuState menuState = stateFactory.CreateState<MenuState>();
             GameplayState gameplayState = stateFactory.CreateState<GameplayState>();
             
-            /*AddTransition(bootState, menuState, );
-            AddTransition(menuState, gameplayState, );
+            AddTransition(bootState, menuState, () => bootState.IsBootStateLoaded);
+            /*AddTransition(menuState, gameplayState, );
             AddTransition(gameplayState, menuState, );*/
             
             SetState(bootState);

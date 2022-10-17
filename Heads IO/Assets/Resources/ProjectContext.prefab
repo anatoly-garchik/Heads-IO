@@ -122,3 +122,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _coroutineRunner: {fileID: 4099950523063086128, guid: 017617c9cd96f324394289434464ad3c,
     type: 3}
+  _screenFade: {fileID: 1185074942423592591, guid: eacbb97de45226d4a9508d2304c3cd40,
+    type: 3}

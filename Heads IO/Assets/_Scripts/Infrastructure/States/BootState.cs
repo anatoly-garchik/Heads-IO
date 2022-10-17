@@ -1,10 +1,24 @@
+using _Scripts.Services.ScreenFade;
 using _Scripts.Utilities;
 
 namespace _Scripts.Infrastructure.States
 {
     public class BootState : IState
     {
-        public void Enter() { }
+        private readonly IScreenFader _screenFader;
+
+        public bool IsBootStateLoaded { get; private set; }
+        
+        public BootState(IScreenFader screenFader)
+        {
+            _screenFader = screenFader;
+        }
+
+        public void Enter()
+        {
+            _screenFader.ShowCurtainImmediate();
+            IsBootStateLoaded = true;
+        }
 
         public void Update() { }
 
