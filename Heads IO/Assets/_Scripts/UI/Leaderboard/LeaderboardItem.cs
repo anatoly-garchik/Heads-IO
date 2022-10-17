@@ -1,4 +1,3 @@
-using System;
 using _Scripts.CommonCharacterComponents;
 using TMPro;
 using UnityEngine;

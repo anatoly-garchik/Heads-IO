@@ -486,7 +486,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyTargetHandler: {fileID: 1149079876469226736}
   _navMeshAgent: {fileID: 1715796890119509844}
-  _speed: 3
+  _speed: 5
 --- !u!114 &533030616651578096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -621,7 +621,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!54 &8649332864688565711
 Rigidbody:
   m_ObjectHideFlags: 0

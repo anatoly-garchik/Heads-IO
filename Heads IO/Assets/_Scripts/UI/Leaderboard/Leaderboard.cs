@@ -30,13 +30,13 @@ namespace _Scripts.UI.Leaderboard
 
             foreach (var enemy in _enemyContainer.GetAllEnemy())
             {
-                Action deathAction = null;
-                deathAction = () =>
+                void DeathAction()
                 {
-                    enemy.DeathHandler.Died -= deathAction;
+                    enemy.DeathHandler.Died -= DeathAction;
                     TryDeleteItem(enemy.PointsStorage);
-                };
-                enemy.DeathHandler.Died += deathAction;
+                }
+
+                enemy.DeathHandler.Died += DeathAction;
             }
         }
 

@@ -1,7 +1,6 @@
 using System.Collections;
 using _Scripts.Audio;
 using _Scripts.InputService;
-using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
@@ -13,6 +12,7 @@ namespace _Scripts.Player
     {
         [SerializeField] private AudioManager _audioManager;
         [Header("Jump settings")]
+        [SerializeField] private JumpActivator _jumpActivator;
         [SerializeField] private AnimationCurve _jumpCurve;
         [SerializeField] private float _jumpDuration;
         [SerializeField] private float _jumpHeight;
@@ -24,13 +24,19 @@ namespace _Scripts.Player
         private Vector3 _destination;
 
         private bool _isCanJump = true;
+        private bool _isEnableJump;
 
         [Inject]
         private void Construct(IInputService inputService)
         {
             _inputService = inputService;
         }
-        
+
+        private void Awake()
+        {
+            _jumpActivator.JumpEnabled += OnEnableJump;
+        }
+
         private void Update()
         {
             Vector3 input = _inputService.GetDirection();
@@ -45,7 +51,9 @@ namespace _Scripts.Player
             _destination = _speed * input.normalized;
             
             Move();
-            Jump();
+            
+            if (_isEnableJump)
+                Jump();
         }
 
         private void Jump()
@@ -78,7 +86,15 @@ namespace _Scripts.Player
             }
         }
 
+        private void OnEnableJump(bool isEnable) => 
+            _isEnableJump = isEnable;
+
         private void Move() =>
             _navMeshAgent.velocity = _destination;
+
+        private void OnDestroy()
+        {
+            _jumpActivator.JumpEnabled -= OnEnableJump;
+        }
     }
 }

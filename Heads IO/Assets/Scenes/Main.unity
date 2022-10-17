@@ -551,7 +551,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 34fb239b783e1f34f82e7086e41748d1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c7429b1f7013ff046bc9374ae3c57e33, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1230,6 +1230,7 @@ GameObject:
   - component: {fileID: 846057179}
   - component: {fileID: 846057178}
   - component: {fileID: 846057177}
+  - component: {fileID: 846057180}
   m_Layer: 5
   m_Name: UseJump
   m_TagString: Untagged
@@ -1283,7 +1284,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1297,11 +1298,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 846057178}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 846057180}
+        m_TargetAssemblyTypeName: _Scripts.UI.HUD.JumpActivatorView, Assembly-CSharp
+        m_MethodName: UseJump
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &846057178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1340,6 +1353,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 846057175}
   m_CullTransparentMesh: 1
+--- !u!114 &846057180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846057175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 456793f0f92bcb8408814d3d3df43545, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _progressBar: {fileID: 846057178}
+  _progressBackground: {fileID: 349274802}
+  _button: {fileID: 846057177}
+  _jumpActivator: {fileID: 6775765965554843925}
+  _amountFoodToEnableJump: 8
+  _amountEnemiesToEnableJump: 1
 --- !u!1 &1042053093
 GameObject:
   m_ObjectHideFlags: 0
@@ -2687,7 +2718,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 6775765965554843922}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 6775765965554843923}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 474e0476c6f0f5f4d9eabd931b029a61, type: 3}
@@ -2699,7 +2730,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 6775765965554843922}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 6775765965554843923}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07aa47ef4016c1c4ba2b5b88b91a4771, type: 3}
@@ -2959,7 +2990,7 @@ PrefabInstance:
     - target: {fileID: 6775765967491825747, guid: 62345a326deea7c459dba5033a29ebd0,
         type: 3}
       propertyPath: _speed
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6775765967491825747, guid: 62345a326deea7c459dba5033a29ebd0,
         type: 3}
@@ -2971,6 +3002,11 @@ PrefabInstance:
       propertyPath: _jumpDuration
       value: 0.85
       objectReference: {fileID: 0}
+    - target: {fileID: 6775765967491825747, guid: 62345a326deea7c459dba5033a29ebd0,
+        type: 3}
+      propertyPath: _jumpActivator
+      value: 
+      objectReference: {fileID: 6775765965554843925}
     - target: {fileID: 6775765967491825747, guid: 62345a326deea7c459dba5033a29ebd0,
         type: 3}
       propertyPath: _jumpCurve.m_Curve.Array.data[1].time
@@ -3031,5 +3067,42 @@ PrefabInstance:
       propertyPath: m_ObstacleAvoidanceType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6775765967491825750, guid: 62345a326deea7c459dba5033a29ebd0,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62345a326deea7c459dba5033a29ebd0, type: 3}
+--- !u!1 &6775765965554843923 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6775765967491825704, guid: 62345a326deea7c459dba5033a29ebd0,
+    type: 3}
+  m_PrefabInstance: {fileID: 6775765965554843922}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6775765965554843924 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6775765966463717198, guid: 62345a326deea7c459dba5033a29ebd0,
+    type: 3}
+  m_PrefabInstance: {fileID: 6775765965554843922}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6effbad7ae8f5549b1dae291b4e91e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6775765965554843925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6775765965554843923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eee5d34ce667ada4bad28faaf35c9c94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timeUseJump: 10
+  _collectorTrigger: {fileID: 6775765965554843924}
