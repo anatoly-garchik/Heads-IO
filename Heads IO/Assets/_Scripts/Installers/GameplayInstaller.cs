@@ -8,21 +8,18 @@ namespace _Scripts.Installers
 {
     public class GameplayInstaller : MonoInstaller
     {
-        [SerializeField] private FoodController _foodController;
+        [SerializeField] private FoodSpawner foodSpawner;
         [SerializeField] private Joystick _joystick;
         //[SerializeField] private Player.Player _player;
-        [SerializeField] private UnityEngine.Camera _mainCamera;
         
         public override void InstallBindings()
         {
-            Container.Bind<FoodController>().FromInstance(_foodController).AsSingle();
+            Container.Bind<FoodSpawner>().FromInstance(foodSpawner).AsSingle();
             Container.Bind<Joystick>().FromInstance(_joystick).AsSingle();
+            //Container.Bind<IInputService>().To<InputService>().AsSingle();
             //Container.Bind<Player.Player >().FromInstance(_player).AsSingle();
-            Container.Bind<UnityEngine.Camera>().FromInstance(_mainCamera).AsSingle();
             
-            //Container.Bind<IViewManager>().FromComponentInNewPrefab(_ui).AsSingle();
-            Container.Bind<IInputService>().To<InputService>().AsSingle();
-            Container.Bind<IEnemyContainer>().To<EnemyContainer>().AsSingle();
+           // Container.Bind<IEnemyContainer>().To<EnemyContainer>().AsSingle();
         }
     }
 }

@@ -10,12 +10,14 @@ namespace _Scripts.Installers
     {
         /*[SerializeField] private FoodFactory _foodFactory;
         [SerializeField] private EnemyFactory _enemyFactory;*/
+        [SerializeField] private GameFactory _gameFactory;
         
         public override void InstallBindings()
         {
+            Container.Bind<GameFactory>().FromInstance(_gameFactory).AsSingle();
             /*Container.Bind<FoodFactory>().FromInstance(_foodFactory).AsSingle();
             Container.Bind<EnemyFactory>().FromInstance(_enemyFactory).AsSingle();*/
-            Container.Bind<IGameFactory>().To<GameFactory>().AsSingle();
+            //Container.Bind<IGameFactory>().To<GameFactory>().AsSingle();
         }
     }
 }

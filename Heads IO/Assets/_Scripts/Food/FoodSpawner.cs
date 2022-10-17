@@ -6,19 +6,19 @@ using Random = UnityEngine.Random;
 
 namespace _Scripts.Food
 {
-    public class FoodController : MonoBehaviour
+    public class FoodSpawner : MonoBehaviour
     {
         [SerializeField, Range(0, 100)] private float _rangeToSpawnFood;
         [SerializeField] private int _maxFoodAmount;
 
         private readonly List<Food> _foods = new List<Food>();
-        
-        private FoodFactory _foodFactory;
+
+        private GameFactory _gameFactory;
 
         [Inject]
-        private void Construct(FoodFactory foodFactory)
+        private void Construct(GameFactory gameFactory)
         {
-            _foodFactory = foodFactory;
+            _gameFactory = gameFactory;
         }
 
         private void Start()
@@ -50,7 +50,7 @@ namespace _Scripts.Food
                 
             Quaternion rotation = Quaternion.Euler(0, Random.Range(0, 360),0);
 
-            Food food = _foodFactory.CreateFood(spawnPosition, rotation, transform);
+            Food food = _gameFactory.CreateFood(spawnPosition, rotation, transform);
             food.FoodTaken += OnTakeFood;
             _foods.Add(food);
         }

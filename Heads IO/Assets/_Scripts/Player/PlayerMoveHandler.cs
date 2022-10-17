@@ -37,7 +37,8 @@ namespace _Scripts.Player
 
         private void Update()
         {
-            Vector3 input = _inputService.GetDirection();
+            //Vector3 input = _inputService.GetDirection();
+            Vector3 input = Vector3.zero;
 
             if (input.magnitude < 0.1f)
             {

@@ -9,13 +9,13 @@ namespace _Scripts.Factory
         [SerializeField, Range(0, 100)] private float _rangeToSpawnEnemy;
         [SerializeField] private int _amountEnemy;
 
-        private EnemyFactory _enemyFactory;
+        private GameFactory _gameFactory;
         private IEnemyContainer _enemyContainer;
 
         [Inject]
-        private void Construct(EnemyFactory enemyFactory, IEnemyContainer enemyContainer)
+        private void Construct(GameFactory gameFactory, IEnemyContainer enemyContainer)
         {
-            _enemyFactory = enemyFactory;
+            _gameFactory = gameFactory;
             _enemyContainer = enemyContainer;
         }
         
@@ -35,7 +35,7 @@ namespace _Scripts.Factory
             Vector3 position = new Vector3(Random.Range(-_rangeToSpawnEnemy, _rangeToSpawnEnemy), 0f,
                 Random.Range(-_rangeToSpawnEnemy, _rangeToSpawnEnemy));
             
-            _enemyContainer.AddEnemy(_enemyFactory.CreateEnemy(position, Quaternion.identity, transform));
+            _enemyContainer.AddEnemy(_gameFactory.CreateEnemy(position, Quaternion.identity, transform));
         }
     }
 }

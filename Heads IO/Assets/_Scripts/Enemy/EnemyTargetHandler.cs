@@ -9,15 +9,15 @@ namespace _Scripts.Enemy
     {
         [SerializeField] private AgroMode _agroMode;
 
-        private FoodController _foodController;
+        private FoodSpawner _foodSpawner;
         private bool _isAgroMode;
         
         public Transform Target { get; private set; }
 
         [Inject]
-        private void Construct(FoodController foodController)
+        private void Construct(FoodSpawner foodSpawner)
         {
-            _foodController = foodController;
+            _foodSpawner = foodSpawner;
         }
 
         private void Update()
@@ -30,7 +30,7 @@ namespace _Scripts.Enemy
 
         private Transform GetTargetFood()
         {
-            List<Transform> possibleTargets = _foodController.GetAllFoodItems();
+            List<Transform> possibleTargets = _foodSpawner.GetAllFoodItems();
 
             float distance = Mathf.Infinity;
             Transform closest = null;
