@@ -8,20 +8,19 @@ namespace _Scripts.Infrastructure.States.GlobalGameStates
     public class MenuState : IState
     {
         private readonly ISceneLoader _sceneLoader;
-        private readonly UIMediator _uiMediator;
+        private readonly UIAdapter _uiAdapter;
         
         public bool IsGameplayRequested { get; private set; }
 
-        public MenuState(ISceneLoader sceneLoader, UIMediator uiMediator)
+        public MenuState(ISceneLoader sceneLoader, UIAdapter uiAdapter)
         {
             _sceneLoader = sceneLoader;
-            _uiMediator = uiMediator;
-            Debug.Log(_uiMediator);
+            _uiAdapter = uiAdapter;
         }
 
         public void Enter()
         {
-            _uiMediator.GameplayRequested += OnGameplayRequested;
+            _uiAdapter.GameplayRequested += OnGameplayRequested;
             _sceneLoader.LoadScene(SceneNameContainer.Menu, OnMenuLoaded);
         }
 
@@ -29,7 +28,7 @@ namespace _Scripts.Infrastructure.States.GlobalGameStates
 
         public void Exit()
         {
-            _uiMediator.GameplayRequested -= OnGameplayRequested;
+            _uiAdapter.GameplayRequested -= OnGameplayRequested;
             IsGameplayRequested = false;
         }
 

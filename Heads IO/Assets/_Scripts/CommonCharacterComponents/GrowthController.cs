@@ -64,6 +64,7 @@ namespace _Scripts.CommonCharacterComponents
 
         private void OnDestroy()
         {
+            transform.DOKill();
             _model.DOKill();
         }
     }

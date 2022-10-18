@@ -1,5 +1,6 @@
 using _Scripts.Services.ScreenFade;
 using _Scripts.Utilities;
+using UnityEngine;
 
 namespace _Scripts.Infrastructure.States.GlobalGameStates
 {

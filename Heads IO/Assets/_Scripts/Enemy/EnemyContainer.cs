@@ -23,6 +23,12 @@ namespace _Scripts.Enemy
             enemy.DeathHandler.Died += deathAction;
         }
 
+        public void ClearEnemyContainer()
+        {
+            for (int i = _enemies.Count - 1; i >= 0; i--)
+                _enemies.Remove(_enemies[i]);
+        }
+        
         public List<Enemy> GetAllEnemy() => 
             _enemies.ToList();
 

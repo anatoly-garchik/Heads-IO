@@ -5,17 +5,17 @@ namespace _Scripts.UI.MainMenu
 {
     public class GameStarter : MonoBehaviour
     {
-        private UIMediator _uiMediator;
+        private UIAdapter _uiAdapter;
 
         [Inject]
-        public void Construct(UIMediator uiMediator)
+        public void Construct(UIAdapter uiAdapter)
         {
-            _uiMediator = uiMediator;
+            _uiAdapter = uiAdapter;
         }
 
         public void StartGame()
         {
-            _uiMediator.GameplayRequested?.Invoke();
+            _uiAdapter.GameplayRequested?.Invoke();
         }
     }
 }

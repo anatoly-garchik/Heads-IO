@@ -4,7 +4,7 @@ namespace _Scripts.Services.Input
 {
     public class InputService : IInputService
     {
-        private readonly UnityEngine.Camera _mainCamera;
+        private UnityEngine.Camera _mainCamera;
         
         private Joystick _joystick;
 
@@ -15,6 +15,7 @@ namespace _Scripts.Services.Input
 
         public void SetJoystick(Joystick joystick)
         {
+            _mainCamera = UnityEngine.Camera.main;
             _joystick = joystick;
         }
         

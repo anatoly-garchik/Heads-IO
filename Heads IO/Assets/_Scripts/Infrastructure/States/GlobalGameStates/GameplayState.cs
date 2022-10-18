@@ -1,25 +1,25 @@
 using _Scripts.Services.LoadScene;
+using _Scripts.UI;
 using _Scripts.Utilities;
 
 namespace _Scripts.Infrastructure.States.GlobalGameStates
 {
     public class GameplayState : IState
     {
-        //private readonly IViewManager _viewManager;
         private readonly ISceneLoader _sceneLoader;
+        private UIAdapter _uiAdapter;
         
         public bool IsMenuRequested { get; private set; }
 
-        public GameplayState(ISceneLoader sceneLoader/*, IViewManager viewManager*/)
+        public GameplayState(ISceneLoader sceneLoader, UIAdapter uiAdapter)
         {
             _sceneLoader = sceneLoader;
-            //_viewManager = viewManager;
+            _uiAdapter = uiAdapter;
         }
 
         public void Enter()
         {
-            //_viewManager.View<GameOverView>().MenuRequested += OnMenuRequested;
-            //_viewManager.Show<GameplayView>();
+            _uiAdapter.MenuRequested += OnMenuRequested;
             _sceneLoader.LoadScene(SceneNameContainer.Gameplay, null);
         }
 
@@ -27,7 +27,7 @@ namespace _Scripts.Infrastructure.States.GlobalGameStates
 
         public void Exit()
         {
-            //_viewManager.View<GameOverView>().MenuRequested -= OnMenuRequested;
+            _uiAdapter.MenuRequested -= OnMenuRequested;
             IsMenuRequested = false;
         }
 

@@ -1,3 +1,4 @@
+using System;
 using _Scripts.Services.Input;
 using DG.Tweening;
 using UnityEngine;
@@ -56,6 +57,12 @@ namespace _Scripts.Player
             float rotationSpeed = 3 * _rotationSpeedMultiplier * speedMultiplier;
 
             transform.rotation = Quaternion.Slerp(myRotation, lookRotation, rotationSpeed * Time.deltaTime);
+        }
+
+        private void OnDestroy()
+        {
+            _model.DOKill();
+            transform.DOKill();
         }
     }
 }

@@ -10,7 +10,9 @@ namespace _Scripts.Infrastructure
 {
     public class GameplayController : MonoBehaviour
     {
+        [SerializeField] private LevelFinisher _levelFinisher;
         [SerializeField] private FoodSpawner _foodSpawner;
+        [SerializeField] private Transform _spawnPoint;
         
         private StateMachine _stateMachine;
         private IStateFactory _stateFactory;
@@ -41,11 +43,12 @@ namespace _Scripts.Infrastructure
             LevelPlayState levelPlay = _stateFactory.CreateState<LevelPlayState>();
             LevelCompleteState levelComplete = _stateFactory.CreateState<LevelCompleteState>();
             
-            levelSpawnOpponents.SetEnemyLinks(_foodSpawner);
+            levelSpawnOpponents.SetEnemyLinks(_foodSpawner, _spawnPoint);
+            levelGenerate.SetSpawnPoint(_spawnPoint);
 
             stateMachine.AddTransition(levelGenerate, levelSpawnOpponents, () => levelGenerate.IsCompleted);
             stateMachine.AddTransition(levelSpawnOpponents, levelPlay, () => levelSpawnOpponents.HasSpawnedOpponents);
-            //stateMachine.AddTransition(levelPlay, levelComplete, () => IsPlayerDead() || OneBlobLeft());
+            stateMachine.AddTransition(levelPlay, levelComplete, () => _levelFinisher.CheckLevelFinish());
 
             stateMachine.SetState(levelGenerate);
             

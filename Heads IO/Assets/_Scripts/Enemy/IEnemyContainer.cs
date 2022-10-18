@@ -7,6 +7,7 @@ namespace _Scripts.Enemy
     {
         public event Action EnemyRemoved;
         public void AddEnemy(Enemy enemy);
+        public void ClearEnemyContainer();
         public List<Enemy> GetAllEnemy();
     }
 }
