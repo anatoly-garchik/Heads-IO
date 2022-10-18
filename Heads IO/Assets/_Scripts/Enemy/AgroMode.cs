@@ -1,5 +1,6 @@
 using System.Collections;
 using _Scripts.CommonCharacterComponents;
+using _Scripts.Factory;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
@@ -18,21 +19,17 @@ namespace _Scripts.Enemy
         public Transform TargetForAttack { get; private set; }
         
         [Inject]
-        private void Construct(IEnemyContainer enemyContainer)
+        private void Construct(IEnemyContainer enemyContainer, GameFactory gameFactory)
         {
             _enemyContainer = enemyContainer;
+            _player = gameFactory.Player;
         }
 
         private void Start()
         {
             StartCoroutine(Timer());
         }
-
-        public void SetTarget(Player.Player player)
-        {
-            _player = player;
-        }
-
+        
         private void Update()
         {
             if (_player != null &&

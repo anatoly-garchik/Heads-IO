@@ -1042,6 +1042,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2144004769}
   - component: {fileID: 2144004768}
+  - component: {fileID: 2144004770}
   m_Layer: 0
   m_Name: GameplayInstaller
   m_TagString: Untagged
@@ -1062,6 +1063,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _joystick: {fileID: 788182936}
+  _gameFactory: {fileID: 2144004770}
+  _foodSpawner: {fileID: 1546113003}
 --- !u!4 &2144004769
 Transform:
   m_ObjectHideFlags: 0
@@ -1077,6 +1080,27 @@ Transform:
   m_Father: {fileID: 559766837}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2144004770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144004767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 616e60bb5890fdc4684e92b8099d015b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _foods:
+  - {fileID: 7862447717023501934, guid: 77b31f13ac349e64eb6cd56371281426, type: 3}
+  _enemies:
+  - {fileID: 5883643329300684310, guid: fa7cad9b455a27a4684817a86b196807, type: 3}
+  - {fileID: 7652437728165113185, guid: 5fd67a66765f73f48bdb52961745fc5f, type: 3}
+  - {fileID: 4584118140092325304, guid: 0bd1c856d12f7ac4f93d808ac7bcb1e6, type: 3}
+  - {fileID: 4298733996707766737, guid: 16b1c7e966ba8514b9094daeaebe9e9e, type: 3}
+  - {fileID: 3911847648884981759, guid: 44169116f148c7a49b402b4f7601aa37, type: 3}
+  _player: {fileID: 6775765967491825755, guid: 62345a326deea7c459dba5033a29ebd0, type: 3}
 --- !u!114 &6410728449011032540
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,5 +1,5 @@
 using _Scripts.Enemy;
-using _Scripts.Food;
+using _Scripts.Factory;
 using _Scripts.Services.Input;
 using UnityEngine;
 using Zenject;
@@ -8,17 +8,18 @@ namespace _Scripts.Installers
 {
     public class GameplayInstaller : MonoInstaller
     {
-        //[SerializeField] private FoodSpawner foodSpawner;
         [SerializeField] private Joystick _joystick;
-        //[SerializeField] private Player.Player _player;
+        [SerializeField] private GameFactory _gameFactory;
+        [SerializeField] private Food.FoodSpawner _foodSpawner;
         
         public override void InstallBindings()
         {
-            //Container.Bind<FoodSpawner>().FromInstance(foodSpawner).AsSingle();
+            Container.Bind<IEnemyContainer>().To<EnemyContainer>().AsSingle();
             Container.Bind<Joystick>().FromInstance(_joystick).AsSingle();
-            //Container.Bind<Player.Player >().FromInstance(_player).AsSingle();
-            
-           // Container.Bind<IEnemyContainer>().To<EnemyContainer>().AsSingle();
+            Container.Bind<GameFactory>().FromInstance(_gameFactory).AsSingle();
+            Container.Bind<Food.FoodSpawner>().FromInstance(_foodSpawner).AsSingle();
+            Container.Bind<IStateFactory>().To<StateFactory>().AsSingle();
+            Container.Bind<IInputService>().To<InputService>().AsSingle();
         }
     }
 }

@@ -14,7 +14,7 @@ namespace _Scripts.Installers
         
         public override void InstallBindings()
         {
-            Container.Bind<GameFactory>().FromInstance(_gameFactory).AsSingle();
+            //Container.Bind<GameFactory>().FromInstance(_gameFactory).AsSingle();
             /*Container.Bind<FoodFactory>().FromInstance(_foodFactory).AsSingle();
             Container.Bind<EnemyFactory>().FromInstance(_enemyFactory).AsSingle();*/
             //Container.Bind<IGameFactory>().To<GameFactory>().AsSingle();

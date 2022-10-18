@@ -2,7 +2,6 @@ using _Scripts.Enemy;
 using _Scripts.Factory;
 using _Scripts.Utilities;
 using UnityEngine;
-using FoodSpawner = _Scripts.Food.FoodSpawner;
 
 namespace _Scripts.Infrastructure.States.GameplayStates
 {
@@ -13,8 +12,6 @@ namespace _Scripts.Infrastructure.States.GameplayStates
 
         private readonly GameFactory _gameFactory;
         private readonly IEnemyContainer _enemyContainer;
-        private FoodSpawner _foodSpawner;
-        private Transform _spawnPoint;
         
         public bool HasSpawnedOpponents { get; private set; }
         
@@ -24,12 +21,6 @@ namespace _Scripts.Infrastructure.States.GameplayStates
             _enemyContainer = enemyContainer;
         }
 
-        public void SetEnemyLinks(FoodSpawner foodSpawner, Transform spawnPoint)
-        {
-            _foodSpawner = foodSpawner;
-            _spawnPoint = spawnPoint;
-        }
-        
         public void Enter()
         {
             _enemyContainer.ClearEnemyContainer();
@@ -53,11 +44,7 @@ namespace _Scripts.Infrastructure.States.GameplayStates
             Vector3 position = new Vector3(Random.Range(-RangeToSpawnEnemy, RangeToSpawnEnemy), 0f,
                 Random.Range(-RangeToSpawnEnemy, RangeToSpawnEnemy));
             
-            Enemy.Enemy enemy = _gameFactory.CreateEnemy(position, Quaternion.identity, _spawnPoint);
-            enemy.AgroMode.SetTarget(_gameFactory.Player);
-            enemy.SkullMarkHandler.SetTarget(_gameFactory.Player);
-            enemy.EnemyTargetHandler.SetFoodSpawner(_foodSpawner);
-            _enemyContainer.AddEnemy(enemy);
+            _enemyContainer.AddEnemy(_gameFactory.CreateEnemy(position, Quaternion.identity));
         }
     }
 }

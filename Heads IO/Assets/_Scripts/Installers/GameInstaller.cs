@@ -20,8 +20,8 @@ namespace _Scripts.Installers
         {
             Container.Bind<IStateFactory>().To<StateFactory>().AsSingle();
             Container.Bind<ISceneLoader>().To<SceneLoader>().AsSingle();
-            Container.Bind<IInputService>().To<InputService>().AsSingle();
-            Container.Bind<IEnemyContainer>().To<EnemyContainer>().AsSingle();
+            //Container.Bind<IInputService>().To<InputService>().AsSingle();
+            //Container.Bind<IEnemyContainer>().To<EnemyContainer>().AsSingle();
             
             Container.Bind<GameController>().FromNew().AsSingle();
             Container.Bind<UIAdapter>().AsSingle();

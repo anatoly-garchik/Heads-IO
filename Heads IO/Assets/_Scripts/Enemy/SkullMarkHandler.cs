@@ -1,4 +1,5 @@
 using _Scripts.CommonCharacterComponents;
+using _Scripts.Factory;
 using UnityEngine;
 using Zenject;
 
@@ -11,10 +12,16 @@ namespace _Scripts.Enemy
         
         private Player.Player _player;
 
-        public void SetTarget(Player.Player player)
+        [Inject]
+        private void Construct(GameFactory gameFactory)
+        {
+            _player = gameFactory.Player;
+        }
+        
+        /*public void SetTarget(Player.Player player)
         {
             _player = player;
-        }
+        }*/
 
         private void Update()
         {
